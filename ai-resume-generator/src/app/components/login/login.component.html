@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <mat-form-field class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+      
+      <mat-form-field class="w-100">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Login</button>
+      <p class="text-danger mt-2">{{ errorMessage }}</p>
+    </form>
+  </div>
+  

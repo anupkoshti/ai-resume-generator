@@ -1,1 +1,24 @@
-<app-login></app-login>
+<!-- Navbar for Guests -->
+<nav *ngIf="!user" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/login" routerLinkActive="active">AI Resume Generator Service</a>
+    <div class="d-flex">
+      <a class="btn btn-link" routerLink="/register" routerLinkActive="active">Sign Up</a>
+      <a class="btn btn-link" routerLink="/login" routerLinkActive="active">Login</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Navbar for Logged-in Customers -->
+<nav *ngIf="user" class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/resume-generator" routerLinkActive="active">Customer Logged In</a>
+    <div class="d-flex">
+      <a class="btn btn-link" routerLink="/resume-generator" routerLinkActive="active">Generate</a>
+      <button class="btn btn-link" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Router Outlet for Page Content -->
+<router-outlet></router-outlet>

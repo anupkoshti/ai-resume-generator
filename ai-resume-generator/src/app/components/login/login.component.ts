@@ -20,17 +20,32 @@ export class LoginComponent {
     });
   }
 
+  // onLogin() {
+  //   if (this.loginForm.valid) {
+  //     this.authService.login(this.loginForm.value).subscribe({
+  //       next: (res) => {
+  //         localStorage.setItem('token', res.token);
+  //         this.router.navigate(['/resume-generator']);
+  //       },
+  //       error: (err) => {
+  //         this.errorMessage = "Invalid credentials. Try again!";
+  //       }
+  //     });
+  //   }
+  // }
+
   onLogin() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (res) => {
-          localStorage.setItem('token', res.token);
-          this.router.navigate(['/resume-generator']);
-        },
-        error: (err) => {
-          this.errorMessage = "Invalid credentials. Try again!";
-        }
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).then(() => {
+        this.router.navigate(['/resume-generator']);
+      }).catch(error => {
+        this.errorMessage = error.message;
       });
     }
+  }
+
+  navigateToSignup() {
+    this.router.navigate(['/register']);
   }
 }
